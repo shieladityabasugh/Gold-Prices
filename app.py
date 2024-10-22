@@ -64,18 +64,6 @@ if len(yearly_data['Year']) > 10:  # If there are too many years, reduce the num
     ax2.set_xticks(ax2.get_xticks()[::2])  # Show every other label
 st.pyplot(fig2)
 
-# Monthly average price graph (filtered data)
-monthly_data = filtered_data.groupby('Month').agg({'Price': 'mean'}).reset_index().sort_values('Month')
-st.subheader("Monthly Average Gold Price")
-fig3, ax3 = plt.subplots(figsize=(10,6))
-ax3.bar(monthly_data['Month'], monthly_data['Price'], color='orange')
-ax3.set_xlabel("Month", fontsize=12)
-ax3.set_ylabel("Average Price (USD)", fontsize=12)
-ax3.set_title(f"Average Gold Price per Month ({year_range[0]} to {year_range[1]})", fontsize=14)
-ax3.grid(axis='y', linestyle='--', linewidth=0.5)
-plt.xticks(rotation=45, ha='right')  # Rotate x-axis labels and align them to the right
-st.pyplot(fig3)
-
 # Insights section
 st.subheader("Key Insights")
 st.write(f"The average gold price from {year_range[0]} to {year_range[1]} for the selected months is {filtered_data['Price'].mean():.2f} USD.")
